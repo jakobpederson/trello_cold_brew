@@ -1,6 +1,7 @@
 import logging
 import logging.config
 from unittest import TestCase
+from trello import exceptions
 
 from cold_brew.cold_brew import TrelloColdBrew
 from cold_brew.trello_helper import TrelloHelper
@@ -20,6 +21,7 @@ class ColdBrewTests(TestCase):
         self.test_org = self.helper.create_organization('ORGTEST')
 
     def tearDown(self):
+        self.sut.remove_workers_from_organization(self.test_org)
         for organization in self.helper.list_organizations():
             if organization.name.lower().startswith('orgtest'):
                 self.helper.delete_organization(organization.id)
@@ -40,5 +42,10 @@ class ColdBrewTests(TestCase):
         members = self.test_org.get_members()
         self.assertEqual(len(members), 2)
         self.sut.remove_workers_from_organization(self.test_org)
+        members = self.test_org.get_members()
+        self.assertEqual(len(members), 1)
+
+    def test_add_invalid_worker(self):
+        self.sut.add_workers_to_organization(self.test_org, member_ids=['abc'])
         members = self.test_org.get_members()
         self.assertEqual(len(members), 1)
