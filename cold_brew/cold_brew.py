@@ -43,7 +43,6 @@ class TrelloColdBrew():
             http_method='DELETE',
             post_args={'idMember': member_id},
         )
-        print(json_obj)
         return json_obj
 
     def _add_member(self, member_id, organization_id):

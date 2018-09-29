@@ -40,7 +40,7 @@ class ColdBrewTests(TestCase):
     def test_remove_workers_from_organization_removes_workers(self):
         self.sut.add_workers_to_organization(self.test_org)
         members = self.test_org.get_members()
-        self.assertEqual(len(members), 2)
+        self.assertEqual(len(members), 4)
         self.sut.remove_workers_from_organization(self.test_org)
         members = self.test_org.get_members()
         self.assertEqual(len(members), 1)
