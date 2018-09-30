@@ -49,3 +49,8 @@ class ColdBrewTests(TestCase):
         self.sut.add_workers_to_organization(self.test_org, member_ids=['abc'])
         members = self.test_org.get_members()
         self.assertEqual(len(members), 1)
+
+    def test_add_handles_empty_list(self):
+        self.sut.add_workers_to_organization(self.test_org, member_ids=[])
+        members = self.test_org.get_members()
+        self.assertEqual(len(members), 4)
