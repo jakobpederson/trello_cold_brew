@@ -35,6 +35,7 @@ class TrelloColdBrew():
         try:
             return self._remove_member(member_id, organization.id)
         except exceptions.Unauthorized:
+            print('cannot remove member {}'.format(member_id))
             pass
 
     def _remove_member(self, member_id, organization_id):
