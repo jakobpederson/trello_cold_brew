@@ -32,20 +32,17 @@ class TrelloColdBrew():
             return self._remove_member(member_id, organization.id)
         except exceptions.Unauthorized:
             print('cannot remove member {}'.format(member_id))
-            pass
 
     def _remove_member(self, member_id, organization_id):
-        json_obj = self.client.fetch_json(
+        return self.client.fetch_json(
             '/organizations/{0}/members/{1}'.format(organization_id, member_id),
             http_method='DELETE',
             post_args={'idMember': member_id},
         )
-        return json_obj
 
     def _add_member(self, member_id, organization_id):
-        json_obj = self.client.fetch_json(
+        return self.client.fetch_json(
             '/organizations/{0}/members/{1}'.format(organization_id, member_id),
             http_method='PUT',
             post_args={'idMember': member_id, "type": "normal"},
         )
-        return json_obj

@@ -1,7 +1,6 @@
 import logging
 import logging.config
 from unittest import TestCase
-from trello import exceptions
 
 from cold_brew.cold_brew import TrelloColdBrew
 from cold_brew.trello_helper import TrelloHelper
